@@ -449,7 +449,7 @@ public class GenericFastImageSearcher extends AbstractImageSearcher {
      * @return the distance between the given feature and the feature stored in the document.
      */
     protected double getDistance(Document document, LireFeature lireFeature) {
-        if (document.getField(fieldName).binaryValue() != null && document.getField(fieldName).binaryValue().length > 0) {
+        if (document.getField(fieldName) != null && document.getField(fieldName).binaryValue() != null && document.getField(fieldName).binaryValue().length > 0) {
             cachedInstance.setByteArrayRepresentation(document.getField(fieldName).binaryValue().bytes, document.getField(fieldName).binaryValue().offset, document.getField(fieldName).binaryValue().length);
             return lireFeature.getDistance(cachedInstance);
         } else {
