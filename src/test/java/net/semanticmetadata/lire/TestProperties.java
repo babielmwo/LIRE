@@ -42,6 +42,7 @@ import net.semanticmetadata.lire.imageanalysis.features.GlobalFeature;
 import net.semanticmetadata.lire.imageanalysis.features.LocalFeatureExtractor;
 import net.semanticmetadata.lire.imageanalysis.features.local.simple.SimpleExtractor;
 import net.semanticmetadata.lire.indexers.parallel.ExtractorItem;
+import nu.pattern.OpenCV;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -56,6 +57,7 @@ import java.util.*;
  * (c) 2015 by Nektarios Anagnostopoulos
  */
 public class TestProperties extends TestCase {
+    static { OpenCV.loadShared();}
 
     private Class<? extends AbstractAggregator> aggregator;
 

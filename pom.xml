@@ -73,7 +73,8 @@
 		<commons-codec.version>1.10</commons-codec.version>
 		<commons-io.version>2.4</commons-io.version>
 		<jopensurf.version>1.0.0</jopensurf.version>
-		<opencv.version>2.4.9-7</opencv.version>
+		<!--<opencv.version>2.4.9-7</opencv.version>-->
+		<opencv.version>2.4.11-2</opencv.version>
 
 		<junit.version>4.12</junit.version>
 
@@ -124,7 +125,8 @@
 			<version>${jopensurf.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>nu.pattern</groupId>
+			<!--<groupId>nu.pattern</groupId>-->
+			<groupId>org.openpnp</groupId>
 			<artifactId>opencv</artifactId>
 			<version>${opencv.version}</version>
 		</dependency>
@@ -168,12 +170,12 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin.version}</version>
-				<configuration>
-					<forkMode>once</forkMode>
-					<argLine>
-						-Djava.library.path=${project.basedir}/libs/native/linux:${project.basedir}/libs/native/osx:${project.basedir}/libs/native/win:${java.library.path}
-					</argLine>
-				</configuration>
+				<!--<configuration>-->
+					<!--<forkMode>once</forkMode>-->
+					<!--<argLine>-->
+						<!-- -Djava.library.path=${project.basedir}/libs/native/linux:${project.basedir}/libs/native/osx:${project.basedir}/libs/native/win:${java.library.path}-->
+					<!--</argLine>-->
+				<!--</configuration>-->
 			</plugin>
 		</plugins>
 	</build>
