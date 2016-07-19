@@ -53,6 +53,7 @@ import net.semanticmetadata.lire.imageanalysis.features.local.simple.SimpleExtra
 import net.semanticmetadata.lire.indexers.parallel.ExtractorItem;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.IndexableField;
 import org.apache.lucene.index.MultiFields;
 import org.apache.lucene.util.Bits;
 
@@ -62,6 +63,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Logger;
+
+import static net.semanticmetadata.lire.builders.DocumentBuilder.FIELD_NAME_IDENTIFIER;
 
 /**
  * Created by mlux on 01/02/2006.
@@ -453,7 +456,10 @@ public class GenericFastImageSearcher extends AbstractImageSearcher {
             cachedInstance.setByteArrayRepresentation(document.getField(fieldName).binaryValue().bytes, document.getField(fieldName).binaryValue().offset, document.getField(fieldName).binaryValue().length);
             return lireFeature.getDistance(cachedInstance);
         } else {
-            logger.warning("No feature stored in this document! (" + extractorItem.getExtractorClass().getName() + ")");
+            IndexableField nameId = document.getField(FIELD_NAME_IDENTIFIER);
+            logger.warning("No feature stored in this document!"
+                + (nameId != null ? " (doc: " + nameId.stringValue() + ")" : "")
+                + " (feature: " + extractorItem.getExtractorClass().getName() + ")");
         }
         return 0d;
     }
@@ -572,7 +578,7 @@ public class GenericFastImageSearcher extends AbstractImageSearcher {
             } else {
                 numDuplicates++;
             }
-            duplicates.get(distance).add(d.getField(DocumentBuilder.FIELD_NAME_IDENTIFIER).stringValue());
+            duplicates.get(distance).add(d.getField(FIELD_NAME_IDENTIFIER).stringValue());
         }
 
         if (numDuplicates == 0) return null;
