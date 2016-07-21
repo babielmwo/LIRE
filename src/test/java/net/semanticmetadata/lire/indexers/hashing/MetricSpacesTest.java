@@ -93,7 +93,7 @@ public class MetricSpacesTest extends TestCase {
     }
 
     public void testSearch() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
-        IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get("ms-index-mirflickr-10kro-all")));
+        IndexReader reader = DirectoryReader.open(FSDirectory.open(new File("ms-index-mirflickr-10kro-all")));
         MetricSpacesImageSearcher is = new MetricSpacesImageSearcher(10, new File("dir.ophist1.dat"), 100);
         is.setNumHashesUsedForQuery(15);
 //        GenericFastImageSearcher is = new GenericFastImageSearcher(10, CEDD.class, false, reader);
@@ -107,7 +107,7 @@ public class MetricSpacesTest extends TestCase {
     }
 
     public void testSearchAccuracy() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
-        IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get("ms-index-mirflickr-10kro-all")));
+        IndexReader reader = DirectoryReader.open(FSDirectory.open(new File("ms-index-mirflickr-10kro-all")));
         int maxResults = 100;
         int intersectSum = 0;
         System.out.println("ColorLayout with BaseSimilarity");

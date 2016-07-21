@@ -191,10 +191,10 @@ public class TestZuBuD extends TestCase {
 
 
         // SEARCHING
-        IndexReader readerIndex = DirectoryReader.open(new RAMDirectory(FSDirectory.open(Paths.get(indexPath)), IOContext.READONCE));
+        IndexReader readerIndex = DirectoryReader.open(new RAMDirectory(FSDirectory.open(new File(indexPath)), IOContext.READONCE));
         System.out.println("Documents in the reader: " + readerIndex.maxDoc());
 
-        IndexReader readerQueries = DirectoryReader.open(new RAMDirectory(FSDirectory.open(Paths.get(indexPathQueries)), IOContext.READONCE));
+        IndexReader readerQueries = DirectoryReader.open(new RAMDirectory(FSDirectory.open(new File(indexPathQueries)), IOContext.READONCE));
         System.out.println("Documents in the reader: " + readerQueries.maxDoc());
 
 

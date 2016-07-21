@@ -102,7 +102,7 @@ public class TestSearching extends TestCase {
 
         BufferedImage image = ImageIO.read(new FileInputStream(imageToSearch));
 
-        IndexReader reader = DirectoryReader.open(new RAMDirectory(FSDirectory.open(Paths.get(indexPath)), IOContext.READONCE));
+        IndexReader reader = DirectoryReader.open(new RAMDirectory(FSDirectory.open(new File(indexPath)), IOContext.READONCE));
         System.out.println("Documents in the reader: " + reader.maxDoc());
 
         GenericFastImageSearcher ceddSearcher = new GenericFastImageSearcher(10, globalFeatureClass, true, reader);
@@ -146,7 +146,7 @@ public class TestSearching extends TestCase {
 
         ArrayList<String> images = FileUtils.readFileLines(new File(testExtensive), true);
 
-        IndexReader reader = DirectoryReader.open(new RAMDirectory(FSDirectory.open(Paths.get(indexPath)), IOContext.READONCE));
+        IndexReader reader = DirectoryReader.open(new RAMDirectory(FSDirectory.open(new File(indexPath)), IOContext.READONCE));
         System.out.println("Documents in the reader: " + reader.maxDoc());
 
         GenericFastImageSearcher ceddSearcher = new GenericFastImageSearcher(1, globalFeatureClass, true, reader);
@@ -205,10 +205,10 @@ public class TestSearching extends TestCase {
         ParallelIndexer parallelIndexerSeparate = new ParallelIndexer(DocumentBuilder.NUM_OF_THREADS, indexPathSeparate, testExtensiveBlack, indexPath);
         parallelIndexerSeparate.run();
 
-        IndexReader readerIndex = DirectoryReader.open(new RAMDirectory(FSDirectory.open(Paths.get(indexPath)), IOContext.READONCE));
+        IndexReader readerIndex = DirectoryReader.open(new RAMDirectory(FSDirectory.open(new File(indexPath)), IOContext.READONCE));
         System.out.println("Documents in the reader: " + readerIndex.maxDoc());
 
-        IndexReader readerQueries = DirectoryReader.open(new RAMDirectory(FSDirectory.open(Paths.get(indexPathSeparate)), IOContext.READONCE));
+        IndexReader readerQueries = DirectoryReader.open(new RAMDirectory(FSDirectory.open(new File(indexPathSeparate)), IOContext.READONCE));
         System.out.println("Documents in the reader: " + readerQueries.maxDoc());
 
         GenericFastImageSearcher ceddSearcher = new GenericFastImageSearcher(5, globalFeatureClass, true, readerIndex);

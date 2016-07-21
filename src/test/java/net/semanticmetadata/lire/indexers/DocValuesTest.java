@@ -25,8 +25,8 @@ import java.nio.file.Paths;
  */
 public class DocValuesTest extends TestCase {
 
-//    private File infile = new File("testdata/images.lst");
-    private File infile = new File("/home/mlux/images3.lst");
+    private File infile = new File("testdata/images.lst");
+//    private File infile = new File("/home/mlux/images3.lst");
     private String indexPath = "ms-index-ms-500k";
     private File mfile = new File("ms-cedd.dat");
 
@@ -45,10 +45,10 @@ public class DocValuesTest extends TestCase {
 
     public void testSearch() throws IOException, IllegalAccessException, ClassNotFoundException, InstantiationException {
         int numRuns = 100;
-//        IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get("ms-index-ms-500k")));
-//        IndexReader readerDocVal = DirectoryReader.open(FSDirectory.open(Paths.get("ms-index-docval-500k")));
-        IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get("/media/mlux/SSD02/ms-index-ms-500k")));
-        IndexReader readerDocVal = DirectoryReader.open(FSDirectory.open(Paths.get("/media/mlux/SSD02/ms-index-docval-500k")));
+//        IndexReader reader = DirectoryReader.open(FSDirectory.open(new File("ms-index-ms-500k")));
+//        IndexReader readerDocVal = DirectoryReader.open(FSDirectory.open(new File("ms-index-docval-500k")));
+        IndexReader reader = DirectoryReader.open(FSDirectory.open(new File("/media/mlux/SSD02/ms-index-ms-500k")));
+        IndexReader readerDocVal = DirectoryReader.open(FSDirectory.open(new File("/media/mlux/SSD02/ms-index-docval-500k")));
         System.out.printf("Number of documents: %d\n", reader.maxDoc());
         GenericDocValuesImageSearcher is = new GenericDocValuesImageSearcher(100, FCTH.class, readerDocVal);
         MetricSpacesImageSearcher mis = new MetricSpacesImageSearcher(100, mfile, 500);

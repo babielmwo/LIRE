@@ -214,7 +214,7 @@ public class TestUniversal extends TestCase {
 
 
         // SEARCHING
-        IndexReader reader = DirectoryReader.open(new RAMDirectory(FSDirectory.open(Paths.get(indexPath)), IOContext.READONCE));
+        IndexReader reader = DirectoryReader.open(new RAMDirectory(FSDirectory.open(new File(indexPath)), IOContext.READONCE));
 //        IndexReader reader = DirectoryReader.open(FSDirectory.open(new File(indexPath)));
         System.out.println("Documents in the reader: " + reader.maxDoc());
 //
@@ -481,7 +481,7 @@ public class TestUniversal extends TestCase {
         ParallelIndexer parallelIndexer = new ParallelIndexer(DocumentBuilder.NUM_OF_THREADS, indexPath, testExtensive, true);
         parallelIndexer.addExtractor(featureClass);
         parallelIndexer.run();
-        IndexReader reader = DirectoryReader.open(new RAMDirectory(FSDirectory.open(Paths.get(indexPath)), IOContext.READONCE));
+        IndexReader reader = DirectoryReader.open(new RAMDirectory(FSDirectory.open(new File(indexPath)), IOContext.READONCE));
         Bits liveDocs = MultiFields.getLiveDocs(reader);
         double queryCount = 0d;
         ImageSearcher searcher = new GenericFastImageSearcher(100, featureClass);

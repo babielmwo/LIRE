@@ -70,7 +70,7 @@
 		<build.timestamp>${maven.build.timestamp}</build.timestamp>
 		<build.number/>
 
-		<lucene-core.version>5.2.1</lucene-core.version>
+		<lucene-core.version>4.10.4</lucene-core.version>
 		<commons-math3.version>3.5</commons-math3.version>
 		<commons-codec.version>1.10</commons-codec.version>
 		<commons-io.version>2.4</commons-io.version>
@@ -185,6 +185,20 @@
 					<!--</argLine>-->
 				<!--</configuration>-->
 			</plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>lucene-${lucene-core.version}</classifier>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 		</plugins>
 	</build>
 
